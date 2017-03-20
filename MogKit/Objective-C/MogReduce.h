@@ -31,10 +31,12 @@ typedef id (^MOGReduceFunc) (id acc, id val, BOOL *stop);
 * A reducer takes an accumulated value and the next value and combines them into a new accumulated value.
 * The return accumulated value is typically passed in as `acc` on successive calls.
 */
-@interface MOGReducer : NSObject
-@property (nonatomic, copy) MOGReduceFunc reduce;
-@property (nonatomic, copy) MOGReducerInititialFunc initial;
-@property (nonatomic, copy) MOGReducerCompleteFunc complete;
+@interface MOGReducer : NSObject {
+    @public
+    MOGReduceFunc reduce;
+    MOGReducerInititialFunc initial;
+    MOGReducerCompleteFunc complete;
+}
 
 /**
 * Initialize a `MOGReducer` with blocks to create initial value, completion handler and reduce block.

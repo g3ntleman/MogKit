@@ -19,10 +19,10 @@ MOGTransformation MOGIdentity(void) {
         return [MOGReducer stepReducerWithNextReducer: reducer
                                           reduceBlock: ^(MOG_RETAINED_BY_CALLER id acc,
                                                          MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
-                                              return reducer.reduce(acc, val, stop);
+                                              return reducer->reduce(acc, val, stop);
                                           }
                                         completeBlock:^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -33,10 +33,10 @@ MOGTransformation MOGMap(id (^mapFunc)(id))
         return [MOGReducer stepReducerWithNextReducer: reducer
                                           reduceBlock: ^(MOG_RETAINED_BY_CALLER id acc,
                                                          MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
-                                              return reducer.reduce(acc, mapFunc(val), stop);
+                                              return reducer->reduce(acc, mapFunc(val), stop);
                                           }
                                         completeBlock:^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -47,10 +47,10 @@ MOGTransformation MOGFilter(MOGPredicate predicate)
         return [MOGReducer stepReducerWithNextReducer:reducer
                                           reduceBlock:^(MOG_RETAINED_BY_CALLER id acc,
                                                         MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
-                                              return predicate(val) ? reducer.reduce(acc, val, stop) : acc;
+                                              return predicate(val) ? reducer->reduce(acc, val, stop) : acc;
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -70,7 +70,7 @@ MOGTransformation MOGTake(NSUInteger n)
                                           reduceBlock: ^(MOG_RETAINED_BY_CALLER id acc,
                                                          MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
                                               if (taken++ < n) {
-                                                  id newAcc = reducer.reduce(acc, val, stop);
+                                                  id newAcc = reducer->reduce(acc, val, stop);
                                                   if (taken == n) {
                                                       if (stop) {
                                                           *stop = YES;
@@ -82,7 +82,7 @@ MOGTransformation MOGTake(NSUInteger n)
                                               }
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -100,7 +100,7 @@ MOGTransformation MOGTakeWhile(MOGPredicate predicate)
                                               }
                                               
                                               if (keepTaking) {
-                                                  return reducer.reduce(acc, val, stop);
+                                                  return reducer->reduce(acc, val, stop);
                                               } else {
                                                   if (stop) {
                                                       *stop = YES;
@@ -109,7 +109,7 @@ MOGTransformation MOGTakeWhile(MOGPredicate predicate)
                                               }
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -121,10 +121,10 @@ MOGTransformation MOGTakeNth(NSUInteger n) {
         return [MOGReducer stepReducerWithNextReducer: reducer
                                           reduceBlock: ^(MOG_RETAINED_BY_CALLER id acc,
                                                          MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
-                                              return (i++ % n == 0) ? reducer.reduce(acc, val, stop) : acc;
+                                              return (i++ % n == 0) ? reducer->reduce(acc, val, stop) : acc;
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -141,10 +141,10 @@ MOGTransformation MOGDrop(NSUInteger n) {
                                                   return acc;
                                               }
                                               
-                                              return reducer.reduce(acc, val, stop);
+                                              return reducer->reduce(acc, val, stop);
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -159,10 +159,10 @@ MOGTransformation MOGDropWhile(MOGPredicate predicate) {
                                               if (keepDropping) {
                                                   keepDropping = predicate(val);
                                               }
-                                              return keepDropping ? acc : reducer.reduce(acc, val, stop);
+                                              return keepDropping ? acc : reducer->reduce(acc, val, stop);
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -172,10 +172,10 @@ MOGTransformation MOGDropNil(void) {
         return [MOGReducer stepReducerWithNextReducer:reducer
                                           reduceBlock:^id(MOG_RETAINED_BY_CALLER id acc,
                                                           MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
-                                              return val != nil ? reducer.reduce(acc, val, stop) : acc;
+                                              return val != nil ? reducer->reduce(acc, val, stop) : acc;
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -208,10 +208,10 @@ MOGTransformation MOGUnique(void) {
                                               }
                                               
                                               [seenValues addObject:val];
-                                              return reducer.reduce(acc, val, stop);
+                                              return reducer->reduce(acc, val, stop);
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -228,11 +228,11 @@ MOGTransformation MOGDedupe(void)
                                                   return acc;
                                               } else {
                                                   previous = val;
-                                                  return reducer.reduce(acc, val, stop);
+                                                  return reducer->reduce(acc, val, stop);
                                               }
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -245,11 +245,11 @@ MOGTransformation MOGFlatten(void)
                                                          MOG_RETAINED_BY_CALLER id val, BOOL *stop) {
                                               if (![val conformsToProtocol:@protocol(NSFastEnumeration)]) {
                                                   // Leave untouched if it's not a fast enumeration
-                                                  return reducer.reduce(acc, val, stop);
+                                                  return reducer->reduce(acc, val, stop);
                                               }
                                               
                                               for (id v in val) {
-                                                  acc = reducer.reduce(acc, v, stop);
+                                                  acc = reducer->reduce(acc, v, stop);
                                                   if (stop && *stop) {
                                                       break;
                                                   }
@@ -258,7 +258,7 @@ MOGTransformation MOGFlatten(void)
                                               return acc;
                                           }
                                         completeBlock: ^id(id result) {
-                                            return reducer.complete(result);
+                                            return reducer->complete(result);
                                         }];
     };
 }
@@ -286,7 +286,7 @@ MOGTransformation MOGPartitionBy(MOGMapFunc partitioningBlock) {
                                                   NSArray *finishedPartition = [currentPartition copy];
                                                   currentPartition = nil;
                                                   
-                                                  id newAcc = reducer.reduce(acc, finishedPartition, stop);
+                                                  id newAcc = reducer->reduce(acc, finishedPartition, stop);
                                                   if (!stop || !*stop) {
                                                       currentPartition = [NSMutableArray new];
                                                       [currentPartition addObject:val];
@@ -296,10 +296,10 @@ MOGTransformation MOGPartitionBy(MOGMapFunc partitioningBlock) {
                                               }
                                           } completeBlock:^id(id result) {
                                               if (currentPartition.count > 0) {
-                                                  result = reducer.reduce(result, [currentPartition copy], NULL);
+                                                  result = reducer->reduce(result, [currentPartition copy], NULL);
                                                   currentPartition = nil;
                                               }
-                                              return reducer.complete(result);
+                                              return reducer->complete(result);
                                           }];
     };
 }
@@ -323,14 +323,14 @@ MOGTransformation MOGPartition(NSUInteger size)
             } else {
                 NSArray *finishedPartition = [currentPartition copy];
                 currentPartition = nil;
-                return reducer.reduce(acc, finishedPartition, stop);
+                return reducer->reduce(acc, finishedPartition, stop);
             }
         } completeBlock:^id(id result) {
             if (currentPartition.count > 0) {
-                result = reducer.reduce(result, [currentPartition copy], NULL);
+                result = reducer->reduce(result, [currentPartition copy], NULL);
             }
 
-            return reducer.complete(result);
+            return reducer->complete(result);
         }];
     };
 }
@@ -354,9 +354,9 @@ MOGTransformation MOGWindow(NSUInteger length)
                                                   [windowedValues addObject:val];
                                               }
                                               
-                                              return reducer.reduce(acc, [windowedValues copy], stop);
+                                              return reducer->reduce(acc, [windowedValues copy], stop);
                                           } completeBlock: ^id(id result) {
-                                              return reducer.complete(result);
+                                              return reducer->complete(result);
                                           }];
     };
 }
@@ -382,14 +382,14 @@ id MOGTransform(id<NSFastEnumeration> source, MOGReducer *reducer, MOGTransforma
 id MOGTransformWithInitial(id<NSFastEnumeration> source, MOGReducer *reducer, id initial, MOGTransformation transformation)
 {
     MOGReducer *tr = transformation(reducer);
-    initial = initial ?: tr.initial();
-    return tr.complete(MOGReduce(source, tr.reduce, initial));
+    initial = initial ?: tr->initial();
+    return tr->complete(MOGReduce(source, tr->reduce, initial));
 }
 
 MOGMapFunc MOGValueTransformer(MOGTransformation transformation) {
     MOGReducer *reducer = transformation(MOGLastValueReducer());
 
     return ^id(id val) {
-        return reducer.reduce(nil, val, NULL);
+        return reducer->reduce(nil, val, NULL);
     };
 }

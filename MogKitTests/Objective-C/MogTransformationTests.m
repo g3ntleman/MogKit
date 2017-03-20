@@ -19,7 +19,7 @@
     NSArray *expected = @[@1, @2, @3, @4, @5];
 
     MOGReducer *reducer = MOGArrayReducer();
-    reducer.reduce = ^id(NSMutableArray *acc, NSNumber *val, BOOL *stop) {
+    reducer->reduce = ^id(NSMutableArray *acc, NSNumber *val, BOOL *stop) {
         [acc addObject:val];
 
         *stop = val.intValue == 5;
@@ -131,12 +131,12 @@
 {
     MOGReducer *reducer = MOGTake(1)(MOGLastValueReducer());
 
-    XCTAssertEqualObjects(@1, reducer.reduce(@0, @1, NULL));
-    XCTAssertEqualObjects(@0, reducer.reduce(@0, @2, NULL));
+    XCTAssertEqualObjects(@1, reducer->reduce(@0, @1, NULL));
+    XCTAssertEqualObjects(@0, reducer->reduce(@0, @2, NULL));
 
     reducer = MOGTake(3)(MOGLastValueReducer());
-    XCTAssertEqualObjects(@1, reducer.reduce(@0, @1, NULL));
-    XCTAssertEqualObjects(@2, reducer.reduce(@0, @2, NULL));
+    XCTAssertEqualObjects(@1, reducer->reduce(@0, @1, NULL));
+    XCTAssertEqualObjects(@2, reducer->reduce(@0, @2, NULL));
 }
 
 - (void)testTakeWhileTransformation
@@ -161,13 +161,13 @@
 
     MOGReducer *reducer = transformation(MOGLastValueReducer());
 
-    XCTAssertEqualObjects(@1, reducer.reduce(@0, @1, NULL));
-    XCTAssertEqualObjects(@0, reducer.reduce(@0, @2, NULL));
-    XCTAssertEqualObjects(@0, reducer.reduce(@0, @3, NULL));
+    XCTAssertEqualObjects(@1, reducer->reduce(@0, @1, NULL));
+    XCTAssertEqualObjects(@0, reducer->reduce(@0, @2, NULL));
+    XCTAssertEqualObjects(@0, reducer->reduce(@0, @3, NULL));
 
     reducer = transformation(MOGLastValueReducer());
-    XCTAssertEqualObjects(@1, reducer.reduce(@0, @1, NULL));
-    XCTAssertEqualObjects(@3, reducer.reduce(@0, @3, NULL));
+    XCTAssertEqualObjects(@1, reducer->reduce(@0, @1, NULL));
+    XCTAssertEqualObjects(@3, reducer->reduce(@0, @3, NULL));
 }
 
 - (void)testTakeNthTransformation
@@ -329,7 +329,7 @@
     MOGReducer *arrayReducer = MOGArrayReducer();
     MOGReducer *reducer = MOGFlatten()(arrayReducer);
 
-    XCTAssertEqualObjects(expected, reducer.reduce(arrayReducer.initial(), array, NULL));
+    XCTAssertEqualObjects(expected, reducer->reduce(arrayReducer->initial(), array, NULL));
 }
 
 - (void)testFlatMapTransformation
@@ -350,7 +350,7 @@
     NSArray *expected = @[@1, @2, @3, @4, @5];
 
     MOGReducer *reducer = MOGArrayReducer();
-    reducer.reduce = ^id(NSMutableArray *acc, NSNumber *val, BOOL *stop) {
+    reducer->reduce = ^id(NSMutableArray *acc, NSNumber *val, BOOL *stop) {
         [acc addObject:val];
 
         *stop = val.intValue == 5;
@@ -393,8 +393,8 @@
         return @(val.intValue % 2 == 0);
     })(MOGLastValueReducer());
 
-    XCTAssertEqualObjects(@[], reducer.reduce(@[], @1, NULL));
-    XCTAssertEqualObjects(@[@1], reducer.reduce(@[], @2, NULL));
+    XCTAssertEqualObjects(@[], reducer->reduce(@[], @1, NULL));
+    XCTAssertEqualObjects(@[@1], reducer->reduce(@[], @2, NULL));
 }
 
 - (void)testPartitionTransformation

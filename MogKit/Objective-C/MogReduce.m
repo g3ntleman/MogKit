@@ -76,9 +76,9 @@ id MOGReduce(id<NSFastEnumeration> source, MOGReduceFunc reduceBlock, id initial
                       reduceBlock:(MOGReduceFunc)reduceBlock
 {
     if (self = [super init]) {
-        self.initial = initBlock;
-        self.complete = completeBlock;
-        self.reduce = reduceBlock;
+        self->initial = initBlock;
+        self->complete = completeBlock;
+        self->reduce = reduceBlock;
     }
 
     return self;
@@ -89,7 +89,7 @@ id MOGReduce(id<NSFastEnumeration> source, MOGReduceFunc reduceBlock, id initial
                                reduceBlock:(MOGReduceFunc)reduceBlock
                              completeBlock:(MOGReducerCompleteFunc)completeBlock
 {
-    return [[self alloc] initWithInitBlock:^id { return nextReducer.initial(); }
+    return [[self alloc] initWithInitBlock:^id { return nextReducer->initial(); }
                              completeBlock:completeBlock
                                reduceBlock:reduceBlock];
 }
