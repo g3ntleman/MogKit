@@ -84,14 +84,6 @@ id MOGReduce(id<NSFastEnumeration> source, MOGReduceFunc reduceBlock, id initial
     return self;
 }
 
-+ (instancetype)stepReducerWithNextReducer:(MOGReducer *)nextReducer reduceBlock:(MOGReduceFunc)reduceBlock
-{
-    return [self stepReducerWithNextReducer:nextReducer
-                                reduceBlock:reduceBlock
-                              completeBlock:^id(id result) {
-                                  return nextReducer.complete(result);
-                              }];
-}
 
 + (instancetype)stepReducerWithNextReducer:(MOGReducer *)nextReducer
                                reduceBlock:(MOGReduceFunc)reduceBlock

@@ -52,14 +52,6 @@ typedef id (^MOGReduceFunc) (id acc, id val, BOOL *stop);
                     completeBlock:(MOGReducerCompleteFunc)completeBlock
                       reduceBlock:(MOGReduceFunc)reduceBlock;
 
-/**
- * Class method to create a step reducer (used when implementing transformations).
- *
- * @param reduceBlock called for each value in the reduction.
- *
- * @return a newly created step reducer.
- */
-+ (instancetype)stepReducerWithNextReducer:(MOGReducer *)nextReducer reduceBlock:(MOGReduceFunc)reduceBlock;
 
 /**
  * Class method to create a step reducer (used when implementing transformations). Use this when the transformation

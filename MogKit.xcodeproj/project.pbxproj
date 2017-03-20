@@ -193,10 +193,10 @@
 				6313D18DDF2E3A5ED92D8280 /* MogTransformation.m */,
 				6313D6FC822B6EB4294F42B4 /* MogReduce.h */,
 				6313D4F60D39DC6032BEF249 /* MogReduce.m */,
-				6313DF5692783E843CF7DE05 /* NSArray+MogKit.m */,
 				6313DA19720500FEB4094902 /* NSArray+MogKit.h */,
-				6313D2953BE9BA10D740E788 /* NSObject+MogKit.m */,
+				6313DF5692783E843CF7DE05 /* NSArray+MogKit.m */,
 				6313DBB24D124431EF1616C5 /* NSObject+MogKit.h */,
+				6313D2953BE9BA10D740E788 /* NSObject+MogKit.m */,
 			);
 			path = "Objective-C";
 			sourceTree = "<group>";
@@ -871,6 +871,7 @@
 				99497FB91AAEEF2B00EC4E21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
