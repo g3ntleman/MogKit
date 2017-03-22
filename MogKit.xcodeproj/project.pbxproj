@@ -83,18 +83,18 @@
 		40B9A6B11A97EAE90062C693 /* MogKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MogKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B9A6C51A97EAFD0062C693 /* MogKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MogKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B9A6CF1A97EAFD0062C693 /* MogKit-MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MogKit-MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6313D18DDF2E3A5ED92D8280 /* MogTransformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MogTransformation.m; sourceTree = "<group>"; };
-		6313D2953BE9BA10D740E788 /* NSObject+MogKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MogKit.m"; sourceTree = "<group>"; };
+		6313D18DDF2E3A5ED92D8280 /* MogTransformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MogTransformation.m; path = ../MogTransformation.m; sourceTree = "<group>"; };
+		6313D2953BE9BA10D740E788 /* NSObject+MogKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MogKit.m"; path = "../NSObject+MogKit.m"; sourceTree = "<group>"; };
 		6313D3D5672BFEF6BC26FB82 /* NSObjectExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectExtensionTests.m; sourceTree = "<group>"; };
-		6313D4F60D39DC6032BEF249 /* MogReduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MogReduce.m; sourceTree = "<group>"; };
-		6313D6FC822B6EB4294F42B4 /* MogReduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MogReduce.h; sourceTree = "<group>"; };
-		6313DA19720500FEB4094902 /* NSArray+MogKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MogKit.h"; sourceTree = "<group>"; };
+		6313D4F60D39DC6032BEF249 /* MogReduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MogReduce.m; path = ../MogReduce.m; sourceTree = "<group>"; };
+		6313D6FC822B6EB4294F42B4 /* MogReduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MogReduce.h; path = ../MogReduce.h; sourceTree = "<group>"; };
+		6313DA19720500FEB4094902 /* NSArray+MogKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+MogKit.h"; path = "../NSArray+MogKit.h"; sourceTree = "<group>"; };
 		6313DAE43FF93B90D20954BC /* MogKitPerfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MogKitPerfTests.m; sourceTree = "<group>"; };
-		6313DBB24D124431EF1616C5 /* NSObject+MogKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MogKit.h"; sourceTree = "<group>"; };
-		6313DCDA3FCA4C65D52CD514 /* MogTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MogTransformation.h; sourceTree = "<group>"; };
+		6313DBB24D124431EF1616C5 /* NSObject+MogKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+MogKit.h"; path = "../NSObject+MogKit.h"; sourceTree = "<group>"; };
+		6313DCDA3FCA4C65D52CD514 /* MogTransformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MogTransformation.h; path = ../MogTransformation.h; sourceTree = "<group>"; };
 		6313DEEF661B2573A4D9037F /* NSArrayExtensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArrayExtensionTests.m; sourceTree = "<group>"; };
 		6313DF459141FACBF1F00FC8 /* MogReduceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MogReduceTests.m; sourceTree = "<group>"; };
-		6313DF5692783E843CF7DE05 /* NSArray+MogKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MogKit.m"; sourceTree = "<group>"; };
+		6313DF5692783E843CF7DE05 /* NSArray+MogKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MogKit.m"; path = "../NSArray+MogKit.m"; sourceTree = "<group>"; };
 		99497FA71AAEEF2B00EC4E21 /* libMogKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMogKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
