@@ -9,7 +9,7 @@
 
 - (void)testSimpleReducer
 {
-    MOGReducer *reducer = MOGSimpleReducer(^id(id acc, id val, BOOL *stop) {
+    MOGReducer *reducer = MOGSimpleReducer(^id(id acc, id val, id* stop) {
         return val;
     });
 
@@ -45,7 +45,7 @@
     MOGReducer *reducer = MOGArrayReducer();
 
     NSMutableArray *mArray = reducer->initial();
-    BOOL stop = NO;
+    id stop = nil;
 
     mArray = reducer->reduce(mArray, @1, &stop);
     mArray = reducer->reduce(mArray, @2, &stop);
@@ -60,7 +60,7 @@
     MOGReducer *reducer = MOGLastValueReducer();
 
     id aString = @"aString";
-    BOOL stop = NO;
+    id stop = nil;
 
     XCTAssertEqualObjects(@1, reducer->reduce(nil, @1, &stop));
     XCTAssertEqualObjects(aString, reducer->reduce(@123, aString, &stop));
@@ -102,7 +102,7 @@
     MOGReducer *reducer = MOGStringConcatReducer(nil);
 
     NSMutableString *acc = reducer->initial();
-    BOOL stop = NO;
+    id stop = nil;
 
     acc = reducer->reduce(acc, @"abc", &stop);
     acc = reducer->reduce(acc, @"def", &stop);
@@ -117,7 +117,7 @@
     MOGReducer *reducer = MOGStringConcatReducer(@", ");
 
     NSMutableString *acc = reducer->initial();
-    BOOL stop = NO;
+    id stop = nil;
 
     acc = reducer->reduce(acc, @"part 1", &stop);
     acc = reducer->reduce(acc, @"part 2", &stop);

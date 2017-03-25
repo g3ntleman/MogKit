@@ -12,7 +12,7 @@
 - (id)mog_transform:(MOGTransformation)transformation reducer:(MOGReducer *)reducer
 {
     MOGReducer *xformReducer = transformation(reducer);
-    BOOL stop = NO;
+    id stop = nil;
     return xformReducer->complete(xformReducer->reduce(xformReducer->initial(), self, &stop));
 }
 

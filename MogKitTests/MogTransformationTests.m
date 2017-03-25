@@ -19,10 +19,10 @@
     NSArray *expected = @[@1, @2, @3, @4, @5];
 
     MOGReducer *reducer = MOGArrayReducer();
-    reducer->reduce = ^id(NSMutableArray *acc, NSNumber *val, BOOL *stop) {
+    reducer->reduce = ^id(NSMutableArray *acc, NSNumber *val, id* stop) {
         [acc addObject:val];
 
-        *stop = val.intValue == 5;
+        *stop = val.intValue == 5 ? @YES : nil;
 
         return acc;
     };
@@ -350,10 +350,10 @@
     NSArray *expected = @[@1, @2, @3, @4, @5];
 
     MOGReducer *reducer = MOGArrayReducer();
-    reducer->reduce = ^id(NSMutableArray *acc, NSNumber *val, BOOL *stop) {
+    reducer->reduce = ^id(NSMutableArray *acc, NSNumber *val, id* stop) {
         [acc addObject:val];
 
-        *stop = val.intValue == 5;
+        *stop = val.intValue == 5 ? @YES : nil;
 
         return acc;
     };

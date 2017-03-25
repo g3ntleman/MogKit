@@ -20,7 +20,7 @@ MOGReducer *MOGArrayReducer(void)
         return [NSMutableArray new];
     } completeBlock:^id(NSMutableArray *result) {
         return [result copy];
-    } reduceBlock:^id(NSMutableArray *acc, id val, BOOL *stop) {
+    } reduceBlock:^id(NSMutableArray *acc, id val, id* stop) {
         [acc addObject:val];
         return acc;
     }];
@@ -33,7 +33,7 @@ MOGReducer *MOGLastValueReducer(void)
         return nil;
     } completeBlock:^id(id o) {
         return o;
-    } reduceBlock:^id(id acc, id val, BOOL *stop) {
+    } reduceBlock:^id(id acc, id val, id* stop) {
         return val;
     }];
 }
@@ -44,7 +44,7 @@ MOGReducer *MOGStringConcatReducer(NSString *separator)
         return [NSMutableString new];
     } completeBlock:^id(NSMutableString *result) {
         return [result copy];
-    } reduceBlock:^id(NSMutableString *acc, NSString *val, BOOL *stop) {
+    } reduceBlock:^id(NSMutableString *acc, NSString *val, id* stop) {
         if (!separator || [acc isEqualToString:@""]) {
             [acc appendString:val];
         } else {
@@ -59,7 +59,7 @@ id MOGReduce(id<NSFastEnumeration> source, MOGReduceFunc reduceBlock, id initial
     id acc = initial;
 
     for (id val in source) {
-        BOOL stop = NO;
+        id stop = nil;
         acc = reduceBlock(acc, val, &stop);
         if (stop) {
             break;

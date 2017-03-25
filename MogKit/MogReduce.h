@@ -25,7 +25,7 @@ typedef id (^MOGReducerCompleteFunc) (id);
  *
  * Set stop to YES to terminate the reduction.
  */
-typedef id (^MOGReduceFunc) (id acc, id val, BOOL *stop);
+typedef id (^MOGReduceFunc) (id acc, id val, id* stop);
 
 /**
 * A reducer takes an accumulated value and the next value and combines them into a new accumulated value.
